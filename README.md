@@ -1,223 +1,374 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sadece ömrüme özell ehehe🤍💋</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sadece ömrüme özell 🤍💋</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&display=swap');
 
-        body {
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Playfair Display', serif;
-            color: white;
-            background: linear-gradient(135deg, #2a0033, #4b0082, #8a2be2, #ff69b4);
-            background-size: 400% 400%;
-            animation: gradientShift 18s ease infinite;
-            position: relative;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body{
+    height:100vh;
+    overflow:hidden;
+    background:black;
+    color:white;
+    font-family:'Playfair Display', serif;
+}
 
-        .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .heart {
-            position: absolute; font-size: 30px; color: #ff1493;
-            text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff00ff;
-            animation: heartFall linear infinite; opacity: 0.85;
-        }
-        @keyframes heartFall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(130vh) rotate(720deg); opacity: 0; }
-        }
+/* 🌌 YILDIZ */
+#stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
 
-        .login-container {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: rgba(20, 0, 40, 0.9); padding: 55px 45px; border-radius: 28px;
-            box-shadow: 0 0 70px rgba(255, 105, 180, 0.8); text-align: center;
-            z-index: 20; border: 3px solid rgba(255, 20, 147, 0.5); max-width: 390px; width: 92%;
-        }
-        .login-container h1 {
-            font-family: 'Dancing Script', cursive; font-size: 46px;
-            background: linear-gradient(to right, #ff69b4, #da70d6, #ff1493);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        input, button { width: 100%; padding: 16px; margin: 15px 0; border: none; border-radius: 14px; }
-        input { background: rgba(255,255,255,0.13); color: white; font-size: 17px; text-align: center; }
-        button { background: linear-gradient(to right, #ff1493, #8a2be2); color: white; font-size: 19px; font-weight: bold; cursor: pointer; }
-        button:hover { transform: scale(1.06); box-shadow: 0 0 30px #ff69b4; }
-        .error { color: #ff6b6b; margin-top: 12px; font-size: 15px; }
+/* 🔐 LOGIN */
+.login-container{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:340px;
+    padding:40px 30px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(25px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 0 40px rgba(255,105,180,0.4);
+    text-align:center;
+    z-index:20;
+    animation:fadeIn 1s ease;
+}
 
-        .main-content { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; padding: 30px 25px; overflow-y: auto; }
-        .main-content.show { display: block; }
+.lock-icon{font-size:45px;margin-bottom:10px;animation:float 2s infinite ease-in-out;}
 
-        .header { text-align: center; margin-bottom: 40px; }
-        .header h1 { font-family: 'Dancing Script', cursive; font-size: 54px; color: #ff69b4; text-shadow: 0 0 20px rgba(255,105,180,0.6); }
+.title{
+    font-family:'Dancing Script';
+    font-size:38px;
+    color:#ff69b4;
+    text-shadow:0 0 20px #ff69b4;
+}
 
-        .counter {
-            background: rgba(255,255,255,0.09); padding: 35px; border-radius: 24px;
-            margin: 30px auto; max-width: 620px; text-align: center;
-            box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
-        }
-        .counter h2 { font-size: 29px; margin-bottom: 16px; }
-        .time { font-size: 35px; font-weight: bold; color: #ff69b4; letter-spacing: 2px; }
+.subtitle{font-size:13px;opacity:0.7;margin-bottom:20px;}
 
-        .music-player {
-            margin: 40px auto; max-width: 540px; 
-            background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,105,180,0.08));
-            padding: 38px 30px; border-radius: 28px; 
-            box-shadow: 0 0 60px rgba(255, 20, 147, 0.5);
-            text-align: center;
-        }
-        .music-player h3 {
-            font-family: 'Dancing Script', cursive; font-size: 36px; color: #ff69b4; margin-bottom: 8px;
-        }
-        .music-player .artist { font-size: 19px; opacity: 0.9; margin-bottom: 25px; }
-        .lyrics {
-            background: rgba(0,0,0,0.35); padding: 25px; border-radius: 18px; 
-            margin: 25px 0; font-size: 18px; line-height: 1.8; color: #ffe4f0;
-        }
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:15px;
+    text-align:center;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    outline:none;
+}
 
-        .surprise-box {
-            margin: 50px auto; max-width: 420px; text-align: center;
-        }
-        .surprise-btn {
-            background: linear-gradient(45deg, #ff1493, #c71585);
-            color: white; padding: 19px 45px; border: none; border-radius: 50px;
-            font-size: 21px; font-weight: bold; cursor: pointer;
-            box-shadow: 0 0 45px rgba(255, 20, 147, 0.75);
-            transition: all 0.4s;
-        }
-        .surprise-btn:hover {
-            transform: scale(1.1) rotate(4deg);
-            box-shadow: 0 0 70px rgba(255, 20, 147, 0.95);
-        }
-        .surprise-content {
-            display: none; margin-top: 25px; padding: 28px; background: rgba(255,255,255,0.1);
-            border-radius: 22px; font-size: 18.5px; line-height: 1.85;
-            box-shadow: 0 0 35px rgba(255,105,180,0.5);
-        }
-        .surprise-content.show { display: block; animation: surprisePop 0.6s ease; }
-        @keyframes surprisePop {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-    </style>
+/* 🔥 VIP BUTTON */
+button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(45deg,#ff1493,#8a2be2);
+    color:white;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+}
+
+button::after{
+    content:"";
+    position:absolute;
+    width:300%;
+    height:300%;
+    top:-100%;
+    left:-100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+    transform:rotate(25deg);
+    transition:0.6s;
+}
+button:hover::after{
+    left:100%;
+}
+
+/* 💖 ANA */
+.main-content{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    padding:20px;
+    z-index:5;
+}
+.main-content.show{display:block;}
+
+.header{text-align:center;margin-top:40px;}
+.header h1{
+    font-family:'Dancing Script';
+    font-size:48px;
+    color:#ff69b4;
+}
+
+/* ⏱ */
+.time{text-align:center;margin-top:20px;font-size:20px;}
+.time span{color:#ff69b4;font-size:26px;margin:0 4px;}
+
+/* 🎵 */
+.music-player{text-align:center;margin:30px auto;}
+
+.lyrics{
+    margin:20px;
+    padding:20px;
+    background:rgba(255,255,255,0.1);
+    border-radius:15px;
+}
+
+/* 📸 */
+.slider{
+    margin:20px auto;
+    width:250px;
+    height:250px;
+    border-radius:20px;
+    overflow:hidden;
+}
+.slider img{width:100%;height:100%;object-fit:cover;}
+
+/* 🎁 */
+.surprise-btn{
+    width:200px;
+    margin:20px auto;
+    display:block;
+    box-shadow:0 0 20px #ff69b4;
+}
+
+/* 🎁 POPUP */
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.8);
+    background:rgba(0,0,0,0.9);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    border:1px solid #ff69b4;
+    box-shadow:0 0 40px #ff69b4;
+    display:none;
+    z-index:999;
+    opacity:0;
+    transition:0.4s;
+}
+.popup.show{
+    display:block;
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+    color:#ff69b4;
+    font-family:'Dancing Script';
+}
+
+/* 💖 KALP */
+.heart{
+    position:absolute;
+    color:pink;
+    animation:fall 5s linear infinite;
+}
+@keyframes fall{
+    0%{top:-10%;}
+    100%{top:110%;}
+}
+
+/* ⚡ */
+@keyframes fadeIn{
+    from{opacity:0;transform:translate(-50%,-60%);}
+    to{opacity:1;transform:translate(-50%,-50%);}
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
+}
+@keyframes shake{
+    0%{transform:translate(-50%,-50%) translateX(0);}
+    25%{transform:translate(-50%,-50%) translateX(-6px);}
+    50%{transform:translate(-50%,-50%) translateX(6px);}
+    75%{transform:translate(-50%,-50%) translateX(-6px);}
+    100%{transform:translate(-50%,-50%) translateX(0);}
+}
+</style>
 </head>
+
 <body>
 
-    <div class="hearts" id="hearts"></div>
+<canvas id="stars"></canvas>
 
-    <div class="login-container" id="loginScreen">
-        <h1>🤍 Bizim Dünyamız 🤍</h1>
-        <p>Şifreyi tahmin et bakalımm 💋</p>
-        <input type="password" id="password" placeholder="örnek: ilk olduğumuz gün">
-        <button onclick="checkPassword()">Giriş Yap</button>
-        <div class="error" id="error"></div>
-    </div>
+<div class="login-container" id="loginScreen">
+    <div class="lock-icon">🔐</div>
+    <h1 class="title">Gizli Alan</h1>
+    <p class="subtitle">Sadece sana özel erişim</p>
 
-    <div class="main-content" id="mainContent">
-        <div class="header">
-            <h1>Hoş geldin gönlümün sultanı 🫠🤍</h1>
-            <p>Sadece ikimize özel gizli dünyamız</p>
-        </div>
+    <input type="password" id="password" placeholder="Şifreyi gir...">
+    <button id="loginBtn">Kilidi Aç 💋</button>
+    <div id="error"></div>
+</div>
 
-        <div class="counter">
-            <h2>16 Nisan 2026'dan beri birlikteyiz 💕</h2>
-            <div class="time" id="loveCounter">0 gün 0 saat 0 dakika 0 saniye</div>
-        </div>
+<div class="main-content" id="mainContent">
 
-        <div class="music-player">
-            <h3>🎵 Sözüm Şiirlerin Mükemmeldir 🎵</h3>
-            <div class="artist">Mustafa Kaya • Sabahattin Ali</div>
-            <div class="lyrics">
-                Sözün şiirlerin mükemmeldir<br>
-                Senden başkasını seven delidir<br><br>
-                Yüzün çiçeklerin en güzelidir<br>
-                Gözlerin bilinmez bir diyar gibi<br><br>
-                Başını göğsüme sakla sevgilim...
-            </div>
-            <iframe src="https://www.youtube.com/embed/3lcUIPU9kqQ?autoplay=1&loop=1&playlist=3lcUIPU9kqQ&modestbranding=1" 
-                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
+<div class="header">
+<h1>Hoş geldin gönlümün sultanı 🫠🤍</h1>
+</div>
 
-        <div class="surprise-box">
-            <button class="surprise-btn" onclick="openSurprise()">😚 Sürprizimi Aç ömrüm💋</button>
-            <div class="surprise-content" id="surpriseContent">
-                Gönlümün sultanı ben seni çoooooookkk seviyommmm sen benim biricik hayatımın aşkı biricik eşimsinn (ama daha evlenmedik işte) 🥹<br><br>
-                Özür dilerimmm ömrümmmm Allah belamı versin Allah'ım kafamı Kıraydı da seni kırmayayım özür dilerimm 🥹 iyiki varsınnn demek isterdim ama sen bana iyiki yarsın sevdiğimm 🫠🤍<br>
-               Sen benim hayatımın aşkı gelecekteki çocuklarımın annesi olacaksın 🫠🤍<br><br>
-                Sonsuza kadar seninle... 💕
-            </div>
-        </div>
+<div class="time">
+<span id="days">0</span>g 
+<span id="hours">0</span>s 
+<span id="minutes">0</span>d 
+<span id="seconds">0</span>sn
+</div>
 
-        <div style="text-align:center; margin-top:60px; font-size:19px; opacity:0.92;">
-           Sadece karımaa özelll 💋💋
-        </div>
-    </div>
+<div class="music-player">
+<h3>🎵 Maşallah 🎵</h3>
+<div class="lyrics" id="typeText"></div>
 
-    <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.textContent = ['❤️','💖','💗','💓','💞'][Math.floor(Math.random()*5)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 9 + 8) + 's';
-            heart.style.fontSize = (Math.random() * 24 + 26) + 'px';
-            document.getElementById('hearts').appendChild(heart);
-            setTimeout(() => heart.remove(), 22000);
-        }
-        setInterval(createHeart, 160);
-        for (let i = 0; i < 15; i++) setTimeout(createHeart, i * 110);
+<iframe width="300" height="170"
+src="https://www.youtube.com/embed/1n7E5QZq8H0?autoplay=1&loop=1&playlist=1n7E5QZq8H0"
+allow="autoplay"></iframe>
+</div>
 
-        function checkPassword() {
-            const pass = document.getElementById('password').value.trim();
-            const error = document.getElementById('error');
-            error.textContent = '';
+<div class="slider">
+<img id="slide" src="foto1.jpg">
+</div>
 
-            if (!pass) { error.textContent = "Lütfen şifreyi gir!"; return; }
+<button class="surprise-btn" onclick="surprise()">🎁 Sürpriz</button>
 
-            if (pass === "14.04.2026") {
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('mainContent').classList.add('show');
-                startLoveCounter();
-            } else {
-                error.textContent = "Yanlış şifre tekrar dene ömrümmm🫠";
-            }
-        }
+</div>
 
-        document.getElementById('password').addEventListener('keypress', e => {
-            if (e.key === 'Enter') checkPassword();
-        });
+<div class="popup" id="popup">
+<h2>💖 Sürpriz 💖</h2>
+<p>ömrümmmm bebeğimm 
+Ben seni çok ama çok seviom🫠
+Biz senle kavga edelim tartışalım ama sonra barışalım ben seni çok seviomm ömrümm 
+Ben ömrümün sonuna kadar seni seveceğim ve seninle evlenemezsen giyeceğim tek şey beyaz kefen olacak;)
 
-        const startDate = new Date(2026, 3, 16);
-        function startLoveCounter() {
-            setInterval(() => {
-                const now = new Date();
-                let diff = Math.floor((now - startDate) / 1000);
-                const days = Math.floor(diff / (3600 * 24));
-                diff %= 3600 * 24;
-                const hours = Math.floor(diff / 3600);
-                diff %= 3600;
-                const minutes = Math.floor(diff / 60);
-                const seconds = diff % 60;
+Ömrümmmm ben çok seviomm kurban olduğummmm beni sensiz bırakma🫠
+Sen ne kadar kızsanda etsende ama şunu unutma ben seni asla ve asla bırakmam ben seni iyi günde de kötü günde de yanında olacamm ve asla bırakmayacam canımı iste canım sana kurban olsun </p>
+<button onclick="closePopup()">Kapat</button>
+</div>
 
-                document.getElementById('loveCounter').textContent = 
-                    `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
-            }, 1000);
-        }
+<script>
 
-        function openSurprise() {
-            const content = document.getElementById('surpriseContent');
-            content.classList.toggle('show');
-            for (let i = 0; i < 12; i++) setTimeout(createHeart, i * 60);
-        }
-    </script>
+/* 🔐 FIXED LOGIN */
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const loginScreen = document.getElementById("loginScreen");
+const mainContent = document.getElementById("mainContent");
+const errorText = document.getElementById("error");
+
+loginBtn.addEventListener("click", checkPassword);
+passwordInput.addEventListener("keypress", e=>{
+if(e.key==="Enter") checkPassword();
+});
+
+function checkPassword(){
+let pass = passwordInput.value.trim();
+
+if(pass==="16.04.2026"){
+loginScreen.style.opacity="0";
+setTimeout(()=>{
+loginScreen.style.display="none";
+mainContent.classList.add("show");
+startCounter();
+typeWriter();
+},500);
+}else{
+errorText.innerText="Yanlış şifre 💔";
+loginScreen.classList.add("shake");
+setTimeout(()=>loginScreen.classList.remove("shake"),400);
+}
+}
+
+/* ⏱ */
+let start=new Date(2026,3,16);
+function startCounter(){
+setInterval(()=>{
+let now=new Date();
+let diff=(now-start)/1000;
+days.innerText=Math.floor(diff/86400);
+hours.innerText=Math.floor(diff%86400/3600);
+minutes.innerText=Math.floor(diff%3600/60);
+seconds.innerText=Math.floor(diff%60);
+},1000);
+}
+
+/* 💌 */
+let msg="Bir şikayetim var bu kadar güzel olunmaz ki...🫠 bir delikanlı kalbinden böyle vurulmaz...";
+let i=0;
+function typeWriter(){
+if(i<msg.length){
+typeText.innerHTML+=msg[i];
+i++;
+setTimeout(typeWriter,50);
+}
+}
+
+/* 📸 */
+let fotos=["foto1.jpg","foto2.jpg","foto3.jpg"];
+let x=0;
+setInterval(()=>{
+x=(x+1)%fotos.length;
+slide.src=fotos[x];
+},3000);
+
+/* 💖 OPTIMIZED */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+},800);
+
+/* 🎁 */
+function surprise(){
+popup.classList.add("show");
+}
+function closePopup(){
+popup.classList.remove("show");
+}
+
+/* 🌌 */
+const c=stars;
+const ctx=c.getContext("2d");
+c.width=innerWidth;
+c.height=innerHeight;
+
+let s=[];
+for(let i=0;i<100;i++){
+s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
+}
+
+function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="white";
+s.forEach(a=>{
+ctx.beginPath();
+ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
+ctx.fill();
+a.y+=0.3;
+if(a.y>c.height)a.y=0;
+});
+requestAnimationFrame(draw);
+}
+draw();
+
+</script>
+
 </body>
 </html>
